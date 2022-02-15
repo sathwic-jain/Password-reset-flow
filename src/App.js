@@ -1,5 +1,4 @@
 import { Switch, Route, Link } from "react-router-dom";
-import {useState,useEffect} from "react";
 import {Login} from "./Login.js"
 import { Signup } from "./Signup.js";
 import {Forgot} from "./Forgot.js";
@@ -7,11 +6,11 @@ import {Reset} from "./Reset.js";
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import './App.css';
-import { useParams,} from "react-router";
+
 
 function App() {
   const display = localStorage.getItem("token");
-  const temp_display=localStorage.getItem("temp_token");
+  // const temp_display=localStorage.getItem("temp_token");
   
  
   return (
