@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useHistory} from "react-router-dom";
+import { useHistory,useParams} from "react-router-dom";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -15,11 +15,11 @@ const formValidationSchema = yup.object({
 
 export function Reset() {
   const [status, setStatus] = useState(null);
-  
+  const {resetid}=useParams();
   const history = useHistory();
   const { handleChange, handleSubmit, handleBlur, values, errors, touched } =
     useFormik({
-      initialValues: { email: "", password: "", token: localStorage.getItem("temp_token") },
+      initialValues: { email: "", password: "", token: resetid },
       validationSchema: formValidationSchema,
       onSubmit: (values) => {
         
@@ -30,7 +30,7 @@ export function Reset() {
         })
           .then((response) => {
             if (response.status === 200){
-              localStorage.removeItem("temp_token");
+              alert("Password reset successful")
               history.push("/Login");}
             else if (response.status === 401) setStatus(401);
             else if (response.status === 402) {
@@ -45,7 +45,9 @@ export function Reset() {
   return (
     <div className="outerLogin">
     <div className="Login">
+      
       <form onSubmit={handleSubmit} className="Loginbox">
+      <h3>Reset your password</h3>
         <TextField
         variant="outlined"
           type="email"
@@ -78,11 +80,10 @@ export function Reset() {
       {status ? (
         status === 401 ? (
           <div>
-            invalid credentials,check the email-id provided or contact the
-            administrator
+            invalid credentials
           </div>
         ) : (
-          <div>Try changing your own password buddy!!😒</div>
+          <div>Try the forgot pasword option again.</div>
         )
       ) : (
         ""

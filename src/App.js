@@ -10,7 +10,7 @@ import './App.css';
 
 function App() {
   const display = localStorage.getItem("token");
-  // const temp_display=localStorage.getItem("temp_token");
+
   
  
   return (
@@ -50,7 +50,7 @@ function App() {
         <Route exact path="/Signup">
           <Signup />
         </Route>
-        <Route exact path="/Reset">
+        <Route exact path="/Reset/:resetid">
           <Reset />
         </Route>
         <Route exact path="/Forgot">
