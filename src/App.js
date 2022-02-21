@@ -5,6 +5,7 @@ import {Forgot} from "./Forgot.js";
 import {Reset} from "./Reset.js";
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
+import { useHistory} from "react-router";
 import './App.css';
 
 
@@ -75,7 +76,9 @@ function Home(){
 
 function Logout() {
   localStorage.removeItem("token");
-  
+  const history=useHistory();
+  useEffect(()=>{history.push("/Login")
+  window.location.reload();});
   return (
     <div>
       <h1>Login to continue</h1>
